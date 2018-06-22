@@ -9,7 +9,8 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "electron": "^1.7.9"
+    "electron": "^1.7.9",
+    "standard": "^11.0.1"
   },
   "dependencies": {
     "load-json-file": "^4.0.0"
