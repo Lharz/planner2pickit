@@ -1,4 +1,4 @@
-const {app, BrowserWindow} = require('electron')
+const { app, BrowserWindow } = require('electron')
 const path = require('path')
 const url = require('url')
 const net = require('electron').net
@@ -8,15 +8,19 @@ const loadJsonFile = require('load-json-file')
 // be closed automatically when the JavaScript object is garbage collected.
 let win
 
+let appDir = path.dirname(require.main.filename)
 let itemDb
 
-loadJsonFile('db.json').then(json => {
+loadJsonFile(appDir + '/db.json').then(json => {
   itemDb = json
+}).catch(error => {
+  console.error('error while loading database file')
+  console.error(error)
 })
 
 function createWindow () {
   // Create the browser window.
-  win = new BrowserWindow({width: 800, height: 600})
+  win = new BrowserWindow({ width: 800, height: 600 })
 
   // and load the index.html of the app.
   win.loadURL(url.format({
@@ -112,6 +116,7 @@ function createWindow () {
         'maxspirit': 'MAX_SPIRIT',
         'gf': 'GF',
         'pickup': 'PICKUP',
+        'area': 'AREADMG',
         // 'rangedef': '???',
         'edef': 'ELITEDAMRED',
         'ias': 'IAS',
@@ -129,7 +134,8 @@ function createWindow () {
         'life': 'LIFE',
         'edmg': 'ELITEDAM',
         'apoc': 'APOC',
-        'damage': 'DMG_PBONUS'
+        'damage': 'DMG_PBONUS',
+        'maxdisc': 'MAX_DISC'
         // 'wpnphy': 'DMG_HI',
         // 'wpnhol': 'DMG_HI'
 
